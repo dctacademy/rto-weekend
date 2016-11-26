@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @registration_number.name %>
+</p>
+
+<p>
+  <strong>District:</strong>
+  <%= @registration_number.district_id %>
+</p>
+
+<h3>Localities</h3>
+<ul>
+	<% @registration_number.localities.each do |locality| %>
+		<li><%= locality.name %></li>
+	<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_registration_number_path(@registration_number) %> |
+<%= link_to 'Back', registration_numbers_path %>

@@ -1,0 +1,1 @@
+json.partial! "registration_numbers/registration_number", registration_number: @registration_number

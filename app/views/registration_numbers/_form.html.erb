@@ -1,0 +1,35 @@
+<%= nested_form_for(@registration_number) do |f| %>
+  <% if @registration_number.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registration_number.errors.count, "error") %> prohibited this registration_number from being saved:</h2>
+
+      <ul>
+      <% @registration_number.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :district_id %><br>
+    <%= f.collection_select :district_id, District.all, :id, :name, prompt: "Select" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.fields_for :localities do |locality| %>
+  <%= locality.label :name %><br/>
+  <%= locality.text_field :name %><br/>
+
+  <%= locality.link_to_remove "Remove this locality" %>
+<% end %>
+<p><%= f.link_to_add "Add a locality", :localities %></p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
